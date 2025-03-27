@@ -1,111 +1,279 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MERISON Systems</title>
-    <link rel="stylesheet" href="styles.css">
-    <script src="script.js"></script>
-</head>
-<body>
-    <header>
+/* General Styles */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
 
-        <h1>Merison Systems</h1>
-        <div class="logo">
-            <img src="WhatsApp_Image_2025-03-27_at_11.31.16_dec143e3-removebg-preview.png" alt="company Logo"> 
-        </div>
-        <h2>Home Page</h2>
-        <nav>
-            <ul>
-                <li><a href="index.html">Home</a></li>
-                <li><a href="about.html">About</a></li>
-                <li><a href="services.html">Services</a></li>
-                <li><a href="products.html">Products</a></li>
-                <li><a href="projects.html">Projects</a></li>
-                <li><a href="contact.html">Contact</a></li>
-                <li><a href="testonial.html">Testimonials</a></li>
-            </ul>
-        </nav>
-    </header>
-
-    <section id="home">
-        <h2>Welcome to Merison Systems</h2>
-        <p>Your trusted partner in security and technology solutions.</p>
-        <strong><p>Where quality meets expectations</p></strong>
-    </section>
-
-    <section id="about">
-        <h2>About Us</h2>
-        <p>MERISON Systems specializes in CCTV installation, security systems, solar panels, and modern gate installations.</p>
-    </section>
-
-    <section id="services">
-        <h2>Our Services</h2>
-        <ul>
-            <li>CCTV Installation & Maintenance</li>
-            <li>Security System Solutions</li>
-            <li>Solar Panel Installation</li>
-            <li>Modern Gate Automation</li>
-        </ul>
-    </section>
-
-    <section class="contact-info">
-        <h2>Get in Touch</h2>
-        <p>We are here to assist you with all your security, energy, and automation needs.
-            <br> Reach out to us through the contact details below or fill out the form, and our team will get back to you promptly.</p>
-        <ul>
-            <li><strong>Phone:</strong> +254 748244451</li>
-            <li><strong>Email:</strong> <a href="merisonsecsystem@gmail.com">merisonsecsystem@gmail.com</a></li>
-            <li><strong>Location:</strong>MERU Town, Kenya</li>
-        </ul>
-    </section>
+body {
+    font-family: 'Poppins', sans-serif;
+    background-color:white;
+    color: #333;
+    line-height: 1.6;
+    
+    margin: 0px;
+}
 
 
-    <div class="container">
-    <div id="contact">
-        <h2>Contact Us</h2>
-        <form>
-            <label for="name">Name:</label>
-            <input type="text" id="name" name="name" required>
-            
-            <label for="email">Email:</label>
-            <input type="email" id="email" name="email" required>
-            
-            <label for="message">Message:</label>
-            <textarea id="message" name="message" required></textarea>
-            
-            <button type="submit">Send Message</button>
-        </form>
-    </div>
-    </div>
+header {
+    background: #222;
+    color: white;
+    padding: 28px;
+    text-align: center;
+    
+    z-index: 1000;
+    margin: 0%;
+    width: 100%;
+}
 
-   </body>
-   
-<div class="icons"> 
-    <a href="https://www.facebook.com/merison sec systems kenya" target="_blank">
-        <img src="https://cdn-icons-png.flaticon.com/512/1384/1384053.png" alt="Facebook Icon" class="responsive">
-    </a>
-    <a href="https://www.instagram.com/" target="_blank">
-        <img src="https://cdn-icons-png.flaticon.com/512/1384/1384063.png" alt="Instagram Icon" class="responsive">
-    </a>
-    <a href="https://twitter.com/" target="_blank">
-        <img src="https://cdn-icons-png.flaticon.com/512/733/733579.png" alt="Twitter Icon" class="responsive">
-    </a>
-    <a href="https://www.linkedin.com/" target="_blank">
-        <img src="https://cdn-icons-png.flaticon.com/512/1384/1384046.png" alt="LinkedIn Icon" class="responsive">
-    </a>
-    <a href="https://wa.me/254748244451" target="_blank">
-        <img src="https://cdn-icons-png.flaticon.com/512/733/733585.png" alt="WhatsApp Icon" class="responsive">
-    </a>
-    <a href="https://www.tiktok.com/" target="_blank">
-        <img src="https://cdn-icons-png.flaticon.com/512/3046/3046126.png" alt="TikTok Icon" class="responsive">
-    </a>
-</div>
+.logo img {
+    background-color: white;
+    height: 60px; 
+    width: auto;
+    object-fit: contain;
+    border-radius: 50%; 
+    padding: 5px; 
+    border: 2px solid #ddd; 
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); 
+    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+}
 
 
-    <footer>
-        <p>&copy; 2025 MERISON Systems. All rights reserved.</p>
-        <p>Designed by <a href="https://muregavictor-dev.github.io/portfolio-/">muregavictor-dev</a></p>
-    </footer>
-    <script src="script.js"></script>
-</html>
+.logo img:hover {
+    transform: scale(1.1); 
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3); 
+}
+
+
+nav ul {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    background-color: #3d3131;
+}
+
+nav ul li a {
+    text-decoration: none;
+    color: white;
+    font-size: 1.1em;
+    padding: 10px 15px;
+    transition: 0.3s ease;
+    border-radius: 5px;
+}
+
+nav ul li a:hover, nav ul li a.active {
+    background: #f4b400;
+    color: #222;
+}
+
+/* Main Content */
+main {
+    padding: 40px 20px;
+    max-width: 1200px;
+    margin: auto;
+}
+
+h1::first-letter {
+    font-size: 2.5em;
+    font-weight: bold;
+    color: #f4b400;
+}
+
+header  h2 {
+    color: #e712ee;
+    margin-bottom: 15px;
+    
+    font-size: 2em;
+    font-weight: bold;
+}
+
+
+h2 {
+    color: #1233ee;
+    margin-bottom: 15px;
+    
+    font-size: 2em;
+    font-weight: bold;
+}
+
+h3{
+    color: #ee5812;
+    margin-bottom: 15px;
+    
+    font-size: 2em;
+    font-weight: bold;
+}
+
+
+section{
+    padding: 45px;
+}
+
+.container {
+    max-width: 800px;
+    margin: auto;
+    background: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    animation: fadeIn 1s ease-in-out;
+}
+
+/* Product and Project Sections */
+.product-list, .project-list, .mission-vision, .our-services{
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+    padding: 20px;
+}
+
+.product-item, .project-item, .mission, .service{
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    padding: 25px;
+    text-align: center;
+    transition: transform 0.3s ease;
+}
+
+.product-item:hover, .project-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+}
+
+.product-item img, .project-item img {
+    width: 100%;
+    border-radius: 12px;
+    height: auto;
+    transition: 0.3s ease;
+}
+
+.product-item h3, .project-item h3 {
+    margin-top: 15px;
+    font-size: 1.4em;
+    color: #222;
+    font-weight: bold;
+}
+
+.product-item p, .project-item p {
+    font-size: 1em;
+    color: #666;
+}
+
+/* Form Styles */
+form {
+    max-width: 500px;
+    margin: auto;
+    background: white;
+    padding: 25px;
+    border-radius: 12px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+label {
+    display: block;
+    margin: 10px 0 5px;
+    font-weight: bold;
+}
+
+input, textarea {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    font-size: 1em;
+}
+
+button {
+    background: #f4b400;
+    color: white;
+    border: none;
+    padding: 12px 18px;
+    cursor: pointer;
+    border-radius: 6px;
+    font-size: 1.1em;
+    transition: 0.3s;
+}
+
+button:hover {
+    background: #e09c00;
+}
+
+.icons{
+    display: flex;
+    gap:10px;
+    align-items: center;
+    margin: 50px;
+}
+
+.icons a img {
+    align-items: center;
+    width: 30px; /* Adjust size */
+    height: 30px;
+    transition: transform 0.3s ease-in-out;
+}
+.icons a img:hover {
+    transform: scale(1.2);
+}
+/* Footer */
+
+.testimonial {
+    background: #e8f0fe;
+    padding: 20px;
+    margin: 20px 0;
+    border-left: 5px solid #007BFF;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease-in-out;
+}
+.testimonial:hover {
+    transform: scale(1.02);
+}
+.testimonial h2 {
+    color: #0056b3;
+    font-size: 22px;
+    margin-bottom: 10px;
+}
+.testimonial p {
+    font-size: 16px;
+    color: #333;
+    line-height: 1.6;
+}
+.contact {
+    font-weight: bold;
+    color: #007BFF;
+    margin-top: 10px;
+}
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+footer {
+    text-align: center;
+    background: #222;
+    color: white;
+    padding: 20px;
+    margin-top: 40px;
+    width: 100%;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    nav ul {
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .product-list, .project-list {
+        grid-template-columns: 1fr;
+    }
+}
