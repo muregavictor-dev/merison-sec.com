@@ -184,5 +184,37 @@ document.querySelectorAll('nav a').forEach(link => {
   });
 });
 
+document.addEventListener('DOMContentLoaded', function() {
+  // Scroll animations
+  const observer = new IntersectionObserver((entries, observer) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+        observer.unobserve(entry.target);
+      }
+    });
+  });
+
+  document.querySelectorAll('section, .testimonial, .project-item').forEach(el => {
+    observer.observe(el);
+  });
+
+  // Hamburger toggle
+  const hamburger = document.querySelector('.hamburger');
+  const navMenu = document.querySelector('nav ul');
+  if(hamburger && navMenu){
+    hamburger.addEventListener('click', () => {
+      hamburger.classList.toggle('active');
+      navMenu.classList.toggle('show');
+    });
+
+    document.querySelectorAll('nav a').forEach(link => {
+      link.addEventListener('click', () => {
+        hamburger.classList.remove('active');
+        navMenu.classList.remove('show');
+      });
+    });
+  }
+});
 
 
