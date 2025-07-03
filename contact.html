@@ -1,120 +1,115 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Get in touch with MERISON Systems for expert security solutions, CCTV installations, solar energy solutions, and modern gate automation.">
-    <meta name="keywords" content="Contact MERISON Systems, security solutions, CCTV installation, solar panels, gate automation">
-    <meta name="author" content="MERISON Systems">
-    <title>Contact Us | MERISON Systems</title>
-    <link rel="stylesheet" href="styles.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Get in touch with MERISON Systems for expert security solutions, CCTV installations, solar energy solutions, and modern gate automation." />
+  <meta name="keywords" content="Contact MERISON Systems, security solutions, CCTV installation, solar panels, gate automation" />
+  <meta name="author" content="MERISON Systems" />
+  <title>Contact Us | MERISON Systems</title>
+  <link rel="stylesheet" href="styles.css" />
 </head>
+
 <body>
-    <header>
-        <h1>Merison Systems</h1>
-        <h2>Contact  Page</h2>
-        <nav>
-            <ul>
-                <li><a href="index.html">Home</a></li>
-                <li><a href="about.html">About</a></li>
-                <li><a href="services.html">Services</a></li>
-                <li><a href="products.html">Products</a></li>
-                <li><a href="projects.html">Projects</a></li>
-                <li><a href="contact.html" class="active">Contact</a></li>
-            </ul>
-        </nav>
-    </header>
+  <header>
+    <h1>Merison Systems</h1>
+    <h2>Contact Us</h2>
+    <nav>
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="services.html">Services</a></li>
+        <li><a href="products.html">Products</a></li>
+        <li><a href="projects.html">Projects</a></li>
+        <li><a href="contact.html" class="active" aria-current="page">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
 
-    <main>
-        <section class="contact-info">
-            <h2>Get in Touch</h2>
-            <p>We are here to assist you with all your security, energy, and automation needs. Reach out to us through the contact details below or fill out the form, and our team will get back to you promptly.</p>
-            <ul>
-                <li><strong>Phone:</strong> +254 748244451</li>
-                <li><strong>Email:</strong> <a href="merisonsecsystem@gmail.com">merisonsecsystem@gmail.com</a></li>
-                <li><strong>Location:</strong>MERU Town, Kenya</li>
-            </ul>
-        </section>
+  <main>
+    <section class="contact-info">
+      <h2>Get in Touch</h2>
+      <p>We are here to assist you with all your security, energy, and automation needs. Reach out to us through the contact details below or fill out the form, and our team will get back to you promptly.</p>
+      <ul>
+        <li><strong>Phone:</strong> +254 748 244 451</li>
+        <li><strong>Email:</strong> <a href="mailto:merisonsecsystem@gmail.com">merisonsecsystem@gmail.com</a></li>
+        <li><strong>Location:</strong> MERU Town, Kenya</li>
+      </ul>
+    </section>
 
-        <section class="contact-form">
-            <h2>Send Us a Message</h2>
-          <form id="contactForm">
-  <input type="hidden" name="_captcha" value="false">
-  <input type="hidden" name="_next" value="">
+    <section class="contact-form">
+      <h2>Send Us a Message</h2>
+      <form id="contactForm">
+        <input type="hidden" name="_captcha" value="false" />
 
-  <label for="name">Name:</label><br>
-  <input type="text" id="name" name="name" required><br>
+        <label for="name">Name:</label><br />
+        <input type="text" id="name" name="name" required /><br />
 
-  <label for="email">Email:</label><br>
-  <input type="email" id="email" name="email" required><br>
+        <label for="email">Email:</label><br />
+        <input type="email" id="email" name="email" required /><br />
 
-  <label for="message">Message:</label><br>
-  <textarea id="message" name="message" rows="4" required></textarea><br>
+        <label for="message">Message:</label><br />
+        <textarea id="message" name="message" rows="4" required></textarea><br />
 
-  <input type="submit" value="Send Message">
-  <p id="formStatus"></p>
-</form>
+        <input type="submit" value="Send Message" />
+        <p id="formStatus" aria-live="polite"></p>
+      </form>
 
-<script>
-  document.getElementById("contactForm").addEventListener("submit", async function (e) {
-    e.preventDefault(); // prevent default form action
+      <script>
+        document.getElementById("contactForm").addEventListener("submit", async function (e) {
+          e.preventDefault();
+          const form = e.target;
+          const status = document.getElementById("formStatus");
+          const formData = new FormData(form);
 
-    const form = e.target;
-    const status = document.getElementById("formStatus");
+          try {
+            const response = await fetch("https://formsubmit.co/ajax/merisonsecsystem@gmail.com", {
+              method: "POST",
+              body: formData,
+              headers: { "Accept": "application/json" }
+            });
 
-    const formData = new FormData(form);
+            if (response.ok) {
+              status.textContent = "✅ Message sent successfully!";
+              status.style.color = "green";
+              form.reset();
+            } else {
+              status.textContent = "❌ Failed to send. Please try again.";
+              status.style.color = "red";
+            }
+          } catch (error) {
+            status.textContent = "⚠️ An error occurred. Check your internet connection.";
+            status.style.color = "orange";
+          }
+        });
+      </script>
+    </section>
+  </main>
 
-    try {
-      const response = await fetch("https://formsubmit.co/ajax/merisonsecsystem@gmail.com", {
-        method: "POST",
-        body: formData,
-        headers: {
-          'Accept': 'application/json'
-        }
-      });
+  <div class="icons" aria-label="Social media links">
+    <a href="https://www.facebook.com/merison sec systems kenya" target="_blank" aria-label="Facebook">
+      <img src="https://cdn-icons-png.flaticon.com/512/1384/1384053.png" alt="Facebook Icon" class="responsive" />
+    </a>
+    <a href="https://www.instagram.com/" target="_blank" aria-label="Instagram">
+      <img src="https://cdn-icons-png.flaticon.com/512/1384/1384063.png" alt="Instagram Icon" class="responsive" />
+    </a>
+    <a href="https://twitter.com/" target="_blank" aria-label="Twitter">
+      <img src="https://cdn-icons-png.flaticon.com/512/733/733579.png" alt="Twitter Icon" class="responsive" />
+    </a>
+    <a href="https://www.linkedin.com/" target="_blank" aria-label="LinkedIn">
+      <img src="https://cdn-icons-png.flaticon.com/512/1384/1384046.png" alt="LinkedIn Icon" class="responsive" />
+    </a>
+    <a href="https://wa.me/254748244451" target="_blank" aria-label="WhatsApp">
+      <img src="https://cdn-icons-png.flaticon.com/512/733/733585.png" alt="WhatsApp Icon" class="responsive" />
+    </a>
+    <a href="https://www.tiktok.com/" target="_blank" aria-label="TikTok">
+      <img src="https://cdn-icons-png.flaticon.com/512/3046/3046126.png" alt="TikTok Icon" class="responsive" />
+    </a>
+  </div>
 
-      if (response.ok) {
-        status.textContent = "✅ Message sent successfully!";
-        status.style.color = "green";
-        form.reset();
-      } else {
-        status.textContent = "❌ Failed to send. Please try again.";
-        status.style.color = "red";
-      }
-    } catch (error) {
-      status.textContent = "⚠️ An error occurred. Check your internet.";
-      status.style.color = "orange";
-    }
-  });
-</script>
-
-
-        </section>
-    </main>
+  <footer>
+    <p>&copy; 2025 MERISON Systems. All rights reserved. | <a href="privacy.html">Privacy Policy</a></p>
+    <p>Designed by <a href="https://muregavictor-dev.github.io/portfolio-/">muregavictor-dev</a></p>
+  </footer>
 </body>
-
-<div class="icons"> 
-    <a href="https://www.facebook.com/merison sec systems kenya" target="_blank">
-        <img src="https://cdn-icons-png.flaticon.com/512/1384/1384053.png" alt="Facebook Icon" class="responsive">
-    </a>
-    <a href="https://www.instagram.com/" target="_blank">
-        <img src="https://cdn-icons-png.flaticon.com/512/1384/1384063.png" alt="Instagram Icon" class="responsive">
-    </a>
-    <a href="https://twitter.com/" target="_blank">
-        <img src="https://cdn-icons-png.flaticon.com/512/733/733579.png" alt="Twitter Icon" class="responsive">
-    </a>
-    <a href="https://www.linkedin.com/" target="_blank">
-        <img src="https://cdn-icons-png.flaticon.com/512/1384/1384046.png" alt="LinkedIn Icon" class="responsive">
-    </a>
-    <a href="https://wa.me/254748244451" target="_blank">
-        <img src="https://cdn-icons-png.flaticon.com/512/733/733585.png" alt="WhatsApp Icon" class="responsive">
-    </a>
-    <a href="https://www.tiktok.com/" target="_blank">
-        <img src="https://cdn-icons-png.flaticon.com/512/3046/3046126.png" alt="TikTok Icon" class="responsive">
-    </a>
-</div>
-    <footer>
-        <p>&copy; 2025 MERISON Systems. All rights reserved. | <a href="privacy.html">Privacy Policy</a></p>
-        <p>Designed by <a href="https://muregavictor-dev.github.io/portfolio-/">muregavictor-dev</a></p>
-    </footer>
 </html>
