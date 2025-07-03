@@ -11,119 +11,10 @@ html {
 
 body {
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  background-color: #eef2f7;
-  color: #222;
+  background-color: #f7f9fb;
+  color: #333;
   line-height: 1.8;
   font-size: 16px;
-  overflow-x: hidden;
-}
-
-/* Glassmorphism Header */
-header {
-  background: rgba(0, 50, 82, 0.8);
-  backdrop-filter: blur(12px);
-  color: #fff;
-  padding: 50px 20px;
-  text-align: center;
-  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
-  border-bottom: 3px solid #00b179;
-  position: relative;
-  z-index: 10;
-}
-
-header h1 {
-  font-size: 2.5rem;
-  font-weight: 600;
-  animation: fadeInUp 0.8s ease forwards;
-}
-
-header h2 {
-  font-weight: 300;
-  font-size: 1.2rem;
-  margin-top: 0.4rem;
-  animation: fadeInUp 1s ease forwards;
-}
-
-/* Animated Gradient Buttons */
-nav a,
-form input[type="submit"] {
-  background: linear-gradient(135deg, #00b179, #009260);
-  background-size: 200% auto;
-  color: #fff;
-  padding: 12px 24px;
-  border-radius: 50px;
-  font-weight: 500;
-  transition: all 0.4s ease;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
-}
-
-nav a:hover,
-nav a.active,
-form input[type="submit"]:hover {
-  background-position: right center;
-  transform: translateY(-4px) scale(1.05);
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
-}
-
-/* Hamburger */
-.hamburger {
-  display: none;
-  flex-direction: column;
-  cursor: pointer;
-  gap: 5px;
-  position: absolute;
-  top: 25px;
-  right: 25px;
-  z-index: 20;
-}
-.hamburger div {
-  width: 25px;
-  height: 3px;
-  background: #fff;
-  border-radius: 2px;
-  transition: all 0.3s ease;
-}
-.hamburger.active div:nth-child(1) {
-  transform: rotate(45deg) translate(5px, 5px);
-}
-.hamburger.active div:nth-child(2) {
-  opacity: 0;
-}
-.hamburger.active div:nth-child(3) {
-  transform: rotate(-45deg) translate(5px, -5px);
-}
-
-/* Parallax Section */
-.parallax {
-  background-image: url('your-parallax-image.jpg');
-  background-attachment: fixed;
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
-  height: 400px;
-  position: relative;
-}
-
-.parallax::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(0, 0, 0, 0.3);
-  backdrop-filter: blur(2px);
-}
-
-.parallax-content {
-  position: relative;
-  z-index: 2;
-  color: #fff;
-  text-align: center;
-  padding-top: 150px;
-  font-size: 2rem;
-  font-weight: bold;
-  text-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
 }
 
 /* Animations */
@@ -139,12 +30,286 @@ form input[type="submit"]:hover {
 }
 
 @keyframes fadeIn {
-  from {
+  0% {
     opacity: 0;
   }
-  to {
+  100% {
     opacity: 1;
   }
+}
+
+/* Header */
+header {
+  background: linear-gradient(90deg, #002c4d, #004c75);
+  color: #fff;
+  padding: 50px 20px;
+  text-align: center;
+  box-shadow: 0 6px 20px rgba(0,0,0,0.35);
+  border-bottom: 3px solid #00b179;
+  position: relative;
+  z-index: 10;
+}
+
+header h1 {
+  font-size: 2.5rem;
+  font-weight: 600;
+  animation: fadeInUp 1s ease forwards;
+}
+
+header h2 {
+  font-weight: 300;
+  font-size: 1.3rem;
+  margin-top: 0.4rem;
+  animation: fadeInUp 1.2s ease forwards;
+}
+
+/* Navigation */
+nav {
+  margin-top: 25px;
+}
+nav ul {
+  list-style: none;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 14px;
+  animation: fadeIn 1s ease forwards;
+}
+
+nav a {
+  text-decoration: none;
+  color: #fff;
+  background: #00b179;
+  padding: 12px 24px;
+  border-radius: 30px;
+  font-weight: 500;
+  transition: all 0.4s ease;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+}
+
+nav a:hover,
+nav a.active {
+  background: #009260;
+  transform: translateY(-5px) scale(1.07);
+  box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+}
+
+/* Hamburger */
+.hamburger {
+  display: none;
+  flex-direction: column;
+  cursor: pointer;
+  gap: 5px;
+  position: absolute;
+  top: 25px;
+  right: 25px;
+  z-index: 20;
+}
+
+.hamburger div {
+  width: 25px;
+  height: 3px;
+  background: #fff;
+  border-radius: 2px;
+  transition: all 0.3s ease;
+}
+
+/* Hamburger active animation */
+.hamburger.active div:nth-child(1) {
+  transform: rotate(45deg) translate(5px, 5px);
+}
+.hamburger.active div:nth-child(2) {
+  opacity: 0;
+}
+.hamburger.active div:nth-child(3) {
+  transform: rotate(-45deg) translate(5px, -5px);
+}
+
+/* Main Content */
+main {
+  max-width: 1200px;
+  margin: 60px auto;
+  padding: 0 20px;
+  animation: fadeIn 1.5s ease forwards;
+}
+
+section {
+  margin-bottom: 70px;
+  opacity: 0;
+  animation: fadeInUp 1s ease forwards;
+  animation-delay: 0.3s;
+}
+
+section h2 {
+  color: #003b5b;
+  margin-bottom: 24px;
+  font-size: 2rem;
+  font-weight: 500;
+  border-bottom: 2px solid #00b179;
+  display: inline-block;
+  padding-bottom: 6px;
+}
+
+/* Contact Info */
+.contact-info ul {
+  list-style: none;
+  margin-top: 15px;
+}
+
+.contact-info li {
+  margin-bottom: 15px;
+  font-size: 1.05rem;
+}
+
+/* Form Styling */
+form {
+  background: rgba(255,255,255,0.8);
+  backdrop-filter: blur(8px);
+  padding: 35px;
+  border: 1px solid rgba(255,255,255,0.2);
+  border-radius: 16px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+  transition: transform 0.4s ease, box-shadow 0.4s ease;
+}
+
+form:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+}
+
+form label {
+  font-weight: 500;
+}
+
+form input[type="text"],
+form input[type="email"],
+form textarea {
+  width: 100%;
+  padding: 14px;
+  margin-top: 6px;
+  margin-bottom: 22px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-size: 1rem;
+  transition: border 0.3s, box-shadow 0.3s, transform 0.2s;
+}
+
+form input[type="text"]:focus,
+form input[type="email"]:focus,
+form textarea:focus {
+  border-color: #00b179;
+  box-shadow: 0 0 10px rgba(0,177,121,0.4);
+  transform: scale(1.03);
+}
+
+form input[type="submit"] {
+  background: #00b179;
+  color: #fff;
+  padding: 14px 32px;
+  border: none;
+  border-radius: 30px;
+  cursor: pointer;
+  font-weight: 500;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+}
+
+form input[type="submit"]:hover {
+  background: #009260;
+  transform: translateY(-4px) scale(1.05);
+  box-shadow: 0 6px 15px rgba(0,0,0,0.2);
+}
+
+/* Testimonials & Projects */
+.testimonial,
+.project-item {
+  background: rgba(255,255,255,0.85);
+  backdrop-filter: blur(6px);
+  border: 1px solid rgba(0,0,0,0.05);
+  padding: 30px;
+  margin-bottom: 35px;
+  border-radius: 16px;
+  box-shadow: 0 6px 20px rgba(0,0,0,0.1);
+  transition: transform 0.4s ease, box-shadow 0.4s ease;
+  opacity: 0;
+  animation: fadeInUp 1s ease forwards;
+}
+
+.testimonial:hover,
+.project-item:hover {
+  transform: translateY(-6px) scale(1.02);
+  box-shadow: 0 14px 40px rgba(0,0,0,0.2);
+}
+
+.testimonial h2,
+.project-item h3 {
+  margin-bottom: 15px;
+  color: #003b5b;
+}
+
+.testimonial p.contact {
+  font-style: italic;
+  color: #666;
+  font-size: 0.95rem;
+}
+
+/* Product and Project Images */
+.product-item img,
+.project-item img {
+  width: 100%;
+  max-width: 500px;
+  height: auto;
+  border-radius: 10px;
+  margin-top: 20px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+  transition: transform 0.4s ease;
+}
+
+.product-item img:hover,
+.project-item img:hover {
+  transform: scale(1.05);
+}
+
+/* Social Icons */
+.icons {
+  display: flex;
+  justify-content: center;
+  gap: 22px;
+  flex-wrap: wrap;
+  margin: 60px 0;
+}
+
+.icons img {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: #fff;
+  padding: 6px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  transition: transform 0.4s, opacity 0.4s;
+}
+
+.icons img:hover {
+  transform: scale(1.3) rotate(10deg);
+  opacity: 0.85;
+}
+
+/* Footer */
+footer {
+  text-align: center;
+  padding: 28px;
+  background: #002c4d;
+  color: #fff;
+  font-size: 0.95rem;
+}
+
+footer a {
+  color: #00b179;
+  text-decoration: none;
+}
+
+footer a:hover {
+  text-decoration: underline;
 }
 
 /* Responsive Navigation */
@@ -155,13 +320,13 @@ form input[type="submit"]:hover {
   nav ul {
     display: none;
     flex-direction: column;
-    background: #00557f;
+    background: #004c75;
     position: absolute;
     top: 70px;
     right: 20px;
     width: 200px;
     border-radius: 8px;
-    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 6px 20px rgba(0,0,0,0.3);
     padding: 10px 0;
   }
   nav ul.show {
