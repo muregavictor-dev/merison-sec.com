@@ -64,40 +64,61 @@ header h2 {
 }
 .logo {
   display: inline-block;
-  /* Glass background behind logo */
-  background: rgba(255, 255, 255, 0.1);
-  backdrop-filter: blur(10px);
+  /* Glassy + blurred background */
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
   border-radius: 1rem;
-  padding: 0.5rem;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
-  transition: transform 0.4s ease, box-shadow 0.4s ease;
+  padding: 1rem;
+  box-shadow:
+    0 10px 25px rgba(0, 0, 0, 0.3),
+    0 0 40px rgba(255, 255, 255, 0.05) inset;
+  /* Entrance animation */
+  opacity: 0;
+  transform: translateY(-20px) rotateX(10deg);
+  animation: logoFadeIn 1s ease-out forwards;
+  cursor: pointer;
+  perspective: 1000px; /* 3D perspective for children */
+  transition: transform 0.6s ease, box-shadow 0.6s ease;
 }
 
-/* The image itself */
 .logo img {
   display: block;
-  max-width: 180px;
+  max-width: 220px;
   height: auto;
-  transition: transform 0.4s ease, filter 0.4s ease;
-  filter: drop-shadow(0 0 10px rgba(0,0,0,0.15));
-  border-radius: 0.5rem;
+  border-radius: 0.75rem;
+  /* 3D pop effect */
+  box-shadow:
+    0 5px 15px rgba(0,0,0,0.25),
+    0 0 30px rgba(0,0,0,0.1);
+  transition: transform 0.6s ease, filter 0.6s ease;
 }
 
-/* On hover: scale and glow */
+/* Hover: 3D tilt and glow */
 .logo:hover {
-  transform: scale(1.05);
-  box-shadow: 0 6px 25px rgba(0, 0, 0, 0.3);
+  transform: rotateX(0deg) rotateY(0deg) scale(1.05);
+  box-shadow:
+    0 20px 50px rgba(0, 0, 0, 0.4),
+    0 0 60px rgba(255, 255, 255, 0.1) inset;
 }
 
 .logo:hover img {
-  transform: scale(1.08);
-  filter: brightness(1.1) drop-shadow(0 0 20px rgba(255, 255, 255, 0.4));
+  transform: rotateX(5deg) rotateY(5deg) scale(1.1);
+  filter: brightness(1.15) drop-shadow(0 0 25px rgba(255, 255, 255, 0.4));
 }
 
-/* Optional: Make sure it's responsive */
+/* Entrance animation keyframes */
+@keyframes logoFadeIn {
+  to {
+    opacity: 1;
+    transform: translateY(0) rotateX(0deg);
+  }
+}
+
+/* Responsive adjustments */
 @media (max-width: 768px) {
   .logo img {
-    max-width: 140px;
+    max-width: 160px;
   }
 }
 
