@@ -50,142 +50,10 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 
-// Select elements
-const hamburger = document.querySelector('.hamburger');
-const navMenu = document.querySelector('nav ul');
-const navLinks = document.querySelectorAll('nav a');
-const fadeInElements = document.querySelectorAll('section, .testimonial, .project-item');
-
-// Hamburger Toggle
-hamburger.addEventListener('click', () => {
-  const isActive = hamburger.classList.toggle('active');
-  navMenu.classList.toggle('show');
-  
-  // Accessibility: toggle aria-expanded
-  hamburger.setAttribute('aria-expanded', isActive);
-});
-
-// Close menu when clicking any nav link (on mobile)
-navLinks.forEach(link => {
-  link.addEventListener('click', () => {
-    if (navMenu.classList.contains('show')) {
-      navMenu.classList.remove('show');
-      hamburger.classList.remove('active');
-      hamburger.setAttribute('aria-expanded', false);
-    }
-  });
-});
-
-// IntersectionObserver options
-const observerOptions = {
-  threshold: 0.2
-};
-
-// Observer callback
-const observerCallback = (entries, observer) => {
-  entries.forEach(entry => {
-    if (entry.isIntersecting) {
-      entry.target.classList.add('visible');
-      observer.unobserve(entry.target);
-    }
-  });
-};
-
-// Create observer
-const observer = new IntersectionObserver(observerCallback, observerOptions);
-
-// Observe all fade-in elements
-fadeInElements.forEach(el => {
-  observer.observe(el);
-});
-
-// Optional: Close menu when clicking outside
-document.addEventListener('click', (e) => {
-  if (
-    !hamburger.contains(e.target) &&
-    !navMenu.contains(e.target) &&
-    navMenu.classList.contains('show')
-  ) {
-    navMenu.classList.remove('show');
-    hamburger.classList.remove('active');
-    hamburger.setAttribute('aria-expanded', false);
-  }
-});
-
-}, observerOptions);
-
-fadeInElements.forEach(el => {
-  observer.observe(el);
-});
-
-// Select the logo container
-const logo = document.querySelector('.logo');
-
-logo.addEventListener('mousemove', (e) => {
-  const rect = logo.getBoundingClientRect();
-  const x = e.clientX - rect.left; // X within element
-  const y = e.clientY - rect.top;  // Y within element
-
-  const centerX = rect.width / 2;
-  const centerY = rect.height / 2;
-
-  // Calculate rotation, adjust sensitivity as needed
-  const rotateX = -(y - centerY) / 10;
-  const rotateY = (x - centerX) / 10;
-
-  logo.style.transform = `rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale(1.07)`;
-});
-
-logo.addEventListener('mouseleave', () => {
-  // Smoothly reset to default
-  logo.style.transform = `rotateX(0deg) rotateY(0deg) scale(1)`;
-});
-
-logo.addEventListener('mouseenter', () => {
-  // Subtle grow when entering
-  logo.style.transition = 'transform 0.2s ease';
-});
-
-
-// =======================
-// 1. SCROLL ANIMATIONS
-// =======================
-const observer = new IntersectionObserver((entries, observer) => {
-  entries.forEach(entry => {
-    if (entry.isIntersecting) {
-      entry.target.classList.add('visible');
-      observer.unobserve(entry.target); // Animate only once
-    }
-  });
-});
-
-document.querySelectorAll('section, .testimonial, .project-item').forEach(el => {
-  observer.observe(el);
-});
-
-// =======================
-// 2. HAMBURGER MENU TOGGLE
-// =======================
-const hamburger = document.querySelector('.hamburger');
-const navMenu = document.querySelector('nav ul');
-
-hamburger.addEventListener('click', () => {
-  hamburger.classList.toggle('active');
-  navMenu.classList.toggle('show');
-});
-
-// =======================
-// 3. CLOSE MENU ON LINK CLICK (Mobile UX)
-// =======================
-document.querySelectorAll('nav a').forEach(link => {
-  link.addEventListener('click', () => {
-    hamburger.classList.remove('active');
-    navMenu.classList.remove('show');
-  });
-});
-
-document.addEventListener('DOMContentLoaded', function() {
-  // Scroll animations
+document.addEventListener('DOMContentLoaded', function () {
+  // =======================
+  // 1. SCROLL ANIMATIONS
+  // =======================
   const observer = new IntersectionObserver((entries, observer) => {
     entries.forEach(entry => {
       if (entry.isIntersecting) {
@@ -193,28 +61,76 @@ document.addEventListener('DOMContentLoaded', function() {
         observer.unobserve(entry.target);
       }
     });
+  }, {
+    threshold: 0.2
   });
 
   document.querySelectorAll('section, .testimonial, .project-item').forEach(el => {
     observer.observe(el);
   });
 
-  // Hamburger toggle
+  // =======================
+  // 2. HAMBURGER MENU TOGGLE
+  // =======================
   const hamburger = document.querySelector('.hamburger');
   const navMenu = document.querySelector('nav ul');
-  if(hamburger && navMenu){
+  const navLinks = document.querySelectorAll('nav a');
+
+  if (hamburger && navMenu) {
     hamburger.addEventListener('click', () => {
-      hamburger.classList.toggle('active');
+      const isActive = hamburger.classList.toggle('active');
       navMenu.classList.toggle('show');
+      hamburger.setAttribute('aria-expanded', isActive);
     });
 
-    document.querySelectorAll('nav a').forEach(link => {
+    // Close menu on link click (mobile)
+    navLinks.forEach(link => {
       link.addEventListener('click', () => {
-        hamburger.classList.remove('active');
-        navMenu.classList.remove('show');
+        if (navMenu.classList.contains('show')) {
+          navMenu.classList.remove('show');
+          hamburger.classList.remove('active');
+          hamburger.setAttribute('aria-expanded', false);
+        }
       });
+    });
+
+    // Close menu when clicking outside
+    document.addEventListener('click', (e) => {
+      if (
+        !hamburger.contains(e.target) &&
+        !navMenu.contains(e.target) &&
+        navMenu.classList.contains('show')
+      ) {
+        navMenu.classList.remove('show');
+        hamburger.classList.remove('active');
+        hamburger.setAttribute('aria-expanded', false);
+      }
+    });
+  }
+
+  // =======================
+  // 3. LOGO 3D INTERACTION
+  // =======================
+  const logo = document.querySelector('.logo');
+  if (logo) {
+    logo.addEventListener('mousemove', (e) => {
+      const rect = logo.getBoundingClientRect();
+      const x = e.clientX - rect.left;
+      const y = e.clientY - rect.top;
+      const centerX = rect.width / 2;
+      const centerY = rect.height / 2;
+      const rotateX = -(y - centerY) / 10;
+      const rotateY = (x - centerX) / 10;
+      logo.style.transform = `rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale(1.07)`;
+    });
+
+    logo.addEventListener('mouseleave', () => {
+      logo.style.transform = `rotateX(0deg) rotateY(0deg) scale(1)`;
+    });
+
+    logo.addEventListener('mouseenter', () => {
+      logo.style.transition = 'transform 0.2s ease';
     });
   }
 });
-
 
