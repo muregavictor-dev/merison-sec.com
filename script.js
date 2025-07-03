@@ -146,3 +146,43 @@ logo.addEventListener('mouseenter', () => {
   logo.style.transition = 'transform 0.2s ease';
 });
 
+
+// =======================
+// 1. SCROLL ANIMATIONS
+// =======================
+const observer = new IntersectionObserver((entries, observer) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('visible');
+      observer.unobserve(entry.target); // Animate only once
+    }
+  });
+});
+
+document.querySelectorAll('section, .testimonial, .project-item').forEach(el => {
+  observer.observe(el);
+});
+
+// =======================
+// 2. HAMBURGER MENU TOGGLE
+// =======================
+const hamburger = document.querySelector('.hamburger');
+const navMenu = document.querySelector('nav ul');
+
+hamburger.addEventListener('click', () => {
+  hamburger.classList.toggle('active');
+  navMenu.classList.toggle('show');
+});
+
+// =======================
+// 3. CLOSE MENU ON LINK CLICK (Mobile UX)
+// =======================
+document.querySelectorAll('nav a').forEach(link => {
+  link.addEventListener('click', () => {
+    hamburger.classList.remove('active');
+    navMenu.classList.remove('show');
+  });
+});
+
+
+
