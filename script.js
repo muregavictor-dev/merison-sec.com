@@ -48,3 +48,43 @@ document.addEventListener("DOMContentLoaded", function () {
         form.parentElement.appendChild(responseMessage);
     });
 });
+
+// Hamburger Menu Toggle
+const hamburger = document.querySelector('.hamburger');
+const navMenu = document.querySelector('nav ul');
+
+hamburger.addEventListener('click', () => {
+  hamburger.classList.toggle('active');
+  navMenu.classList.toggle('show');
+});
+
+// Close menu when a link is clicked (optional)
+document.querySelectorAll('nav a').forEach(link => {
+  link.addEventListener('click', () => {
+    if (navMenu.classList.contains('show')) {
+      navMenu.classList.remove('show');
+      hamburger.classList.remove('active');
+    }
+  });
+});
+
+// Scroll-triggered fade-in animations
+const observerOptions = {
+  threshold: 0.2
+};
+
+const fadeInElements = document.querySelectorAll('section, .testimonial, .project-item');
+
+const observer = new IntersectionObserver((entries, observer) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.style.opacity = 1;
+      entry.target.style.transform = 'translateY(0)';
+      observer.unobserve(entry.target);
+    }
+  });
+}, observerOptions);
+
+fadeInElements.forEach(el => {
+  observer.observe(el);
+});
