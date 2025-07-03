@@ -1,23 +1,8 @@
-/* ================================================
-   RESET & BASE
-================================================ */
-:root {
-  --primary: #00b179;
-  --primary-dark: #009260;
-  --accent: #003b5b;
-  --bg: #f7f9fb;
-  --header-gradient: linear-gradient(90deg, #002c4d, #004c75);
-  --glass: rgba(255,255,255,0.1);
-  --blur: blur(12px);
-  --radius: 1rem;
-  --transition: all 0.4s ease;
-}
-
+/* Reset & Base */
 * {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
-  transition: var(--transition);
 }
 
 html {
@@ -26,15 +11,13 @@ html {
 
 body {
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  background: var(--bg);
+  background-color: #f7f9fb;
   color: #333;
   line-height: 1.8;
   font-size: 16px;
 }
 
-/* ================================================
-   ANIMATIONS
-================================================ */
+/* Animations */
 @keyframes fadeInUp {
   0% {
     opacity: 0;
@@ -47,113 +30,106 @@ body {
 }
 
 @keyframes fadeIn {
-  0% {opacity: 0;}
-  100% {opacity: 1;}
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
 }
 
-/* Scroll reveal - ready for JS toggling */
-.reveal {
-  opacity: 0;
-  transform: translateY(40px);
-}
-.reveal.visible {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-/* ================================================
-   HEADER
-================================================ */
+/* Header */
 header {
-  background: var(--header-gradient);
+  background: linear-gradient(90deg, #002c4d, #004c75);
   color: #fff;
-  padding: 60px 20px;
+  padding: 50px 20px;
   text-align: center;
+  box-shadow: 0 6px 20px rgba(0,0,0,0.35);
+  border-bottom: 3px solid #00b179;
   position: relative;
-  box-shadow: 0 6px 20px rgba(0,0,0,0.4);
-  border-bottom: 3px solid var(--primary);
-  overflow: hidden;
-}
-
-/* Subtle shine animation */
-header::after {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: -75%;
-  width: 50%;
-  height: 100%;
-  background: linear-gradient(120deg, transparent, rgba(255,255,255,0.3), transparent);
-  transform: skewX(-20deg);
-  animation: shine 8s infinite;
-}
-@keyframes shine {
-  0% {left: -75%;}
-  100% {left: 125%;}
+  z-index: 10;
 }
 
 header h1 {
-  font-size: 2.8rem;
+  font-size: 2.5rem;
   font-weight: 600;
-  animation: fadeInUp 1s forwards;
-}
-header h2 {
-  font-weight: 300;
-  font-size: 1.4rem;
-  margin-top: 0.5rem;
-  animation: fadeInUp 1.2s forwards;
+  animation: fadeInUp 1s ease forwards;
 }
 
-/* ================================================
-   LOGO
-================================================ */
+header h2 {
+  font-weight: 300;
+  font-size: 1.3rem;
+  margin-top: 0.4rem;
+  animation: fadeInUp 1.2s ease forwards;
+}
 .logo {
   display: inline-block;
-  background: var(--glass);
-  backdrop-filter: var(--blur);
-  border: 1px solid rgba(255,255,255,0.15);
-  border-radius: var(--radius);
+  /* Glassy + blurred background */
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 1rem;
   padding: 1rem;
-  cursor: pointer;
-  perspective: 1000px;
+  box-shadow:
+    0 10px 25px rgba(0, 0, 0, 0.3),
+    0 0 40px rgba(255, 255, 255, 0.05) inset;
+  
+  /* existing styles ... */
   transform-style: preserve-3d;
+  transform-origin: center;
+}
+
+  /* Entrance animation */
   opacity: 0;
   transform: translateY(-20px) rotateX(10deg);
   animation: logoFadeIn 1s ease-out forwards;
-}
-@keyframes logoFadeIn {
-  to {
-    opacity: 1;
-    transform: translateY(0) rotateX(0);
-  }
+  cursor: pointer;
+  perspective: 1000px; /* 3D perspective for children */
+  transition: transform 0.6s ease, box-shadow 0.6s ease;
 }
 
 .logo img {
   display: block;
   max-width: 220px;
+  height: auto;
   border-radius: 0.75rem;
-  box-shadow: 0 5px 15px rgba(0,0,0,0.25);
+  /* 3D pop effect */
+  box-shadow:
+    0 5px 15px rgba(0,0,0,0.25),
+    0 0 30px rgba(0,0,0,0.1);
   transition: transform 0.6s ease, filter 0.6s ease;
 }
 
-/* Hover: 3D lift */
+/* Hover: 3D tilt and glow */
 .logo:hover {
-  transform: rotateX(0) rotateY(0) scale(1.05);
+  transform: rotateX(0deg) rotateY(0deg) scale(1.05);
+  box-shadow:
+    0 20px 50px rgba(0, 0, 0, 0.4),
+    0 0 60px rgba(255, 255, 255, 0.1) inset;
 }
+
 .logo:hover img {
   transform: rotateX(5deg) rotateY(5deg) scale(1.1);
-  filter: brightness(1.1);
+  filter: brightness(1.15) drop-shadow(0 0 25px rgba(255, 255, 255, 0.4));
 }
 
-/* On click (JS toggles .clicked) */
-.logo.clicked {
-  transform: scale(1.1);
-  box-shadow: 0 20px 60px rgba(0,0,0,0.4);
+/* Entrance animation keyframes */
+@keyframes logoFadeIn {
+  to {
+    opacity: 1;
+    transform: translateY(0) rotateX(0deg);
+  }
 }
 
-/* ================================================
-   NAVIGATION
-================================================ */
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .logo img {
+    max-width: 160px;
+  }
+}
+
+
+/* Navigation */
 nav {
   margin-top: 25px;
 }
@@ -161,35 +137,27 @@ nav ul {
   list-style: none;
   display: flex;
   justify-content: center;
+  flex-wrap: wrap;
   gap: 14px;
+  animation: fadeIn 1s ease forwards;
 }
+
 nav a {
   text-decoration: none;
   color: #fff;
-  background: var(--primary);
+  background: #00b179;
   padding: 12px 24px;
   border-radius: 30px;
   font-weight: 500;
-  position: relative;
-  overflow: hidden;
+  transition: all 0.4s ease;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.2);
 }
-nav a::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: -100%;
-  width: 200%;
-  height: 100%;
-  background: linear-gradient(120deg, transparent, rgba(255,255,255,0.2), transparent);
-  transition: left 0.5s;
-}
-nav a:hover::before {
-  left: 100%;
-}
+
 nav a:hover,
 nav a.active {
-  background: var(--primary-dark);
-  transform: translateY(-4px) scale(1.05);
+  background: #009260;
+  transform: translateY(-5px) scale(1.07);
+  box-shadow: 0 10px 30px rgba(0,0,0,0.3);
 }
 
 /* Hamburger */
@@ -203,85 +171,82 @@ nav a.active {
   right: 25px;
   z-index: 20;
 }
+
 .hamburger div {
   width: 25px;
   height: 3px;
   background: #fff;
   border-radius: 2px;
+  transition: all 0.3s ease;
 }
 
-/* Hamburger active */
+/* Hamburger active animation */
 .hamburger.active div:nth-child(1) {
-  transform: rotate(45deg) translate(5px,5px);
+  transform: rotate(45deg) translate(5px, 5px);
 }
 .hamburger.active div:nth-child(2) {
   opacity: 0;
 }
 .hamburger.active div:nth-child(3) {
-  transform: rotate(-45deg) translate(5px,-5px);
+  transform: rotate(-45deg) translate(5px, -5px);
 }
 
-/* ================================================
-   MAIN CONTENT
-================================================ */
+/* Main Content */
 main {
   max-width: 1200px;
   margin: 60px auto;
   padding: 0 20px;
-}
-section {
-  margin-bottom: 70px;
+  animation: fadeIn 1.5s ease forwards;
 }
 
-/* Section headings */
+section {
+  margin-bottom: 70px;
+  opacity: 0;
+  animation: fadeInUp 1s ease forwards;
+  animation-delay: 0.3s;
+}
+
 section h2 {
-  color: var(--accent);
+  color: #003b5b;
   margin-bottom: 24px;
   font-size: 2rem;
-  border-bottom: 2px solid var(--primary);
+  font-weight: 500;
+  border-bottom: 2px solid #00b179;
   display: inline-block;
   padding-bottom: 6px;
 }
 
-/* ================================================
-   TESTIMONIALS & PROJECTS
-================================================ */
-.testimonial,
-.project-item {
-  background: rgba(255,255,255,0.85);
-  backdrop-filter: blur(6px);
-  border: 1px solid rgba(0,0,0,0.05);
-  padding: 30px;
-  margin-bottom: 35px;
-  border-radius: 16px;
-  box-shadow: 0 6px 20px rgba(0,0,0,0.1);
-  transform: translateY(20px);
-  opacity: 0;
-  transition: var(--transition);
-}
-.testimonial.visible,
-.project-item.visible {
-  opacity: 1;
-  transform: translateY(0);
-}
-.testimonial:hover,
-.project-item:hover {
-  transform: translateY(-6px) scale(1.02);
-  box-shadow: 0 14px 40px rgba(0,0,0,0.2);
+/* Contact Info */
+.contact-info ul {
+  list-style: none;
+  margin-top: 15px;
 }
 
-/* ================================================
-   FORMS
-================================================ */
+.contact-info li {
+  margin-bottom: 15px;
+  font-size: 1.05rem;
+}
+
+/* Form Styling */
 form {
   background: rgba(255,255,255,0.8);
   backdrop-filter: blur(8px);
   padding: 35px;
+  border: 1px solid rgba(255,255,255,0.2);
   border-radius: 16px;
   box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-  border: 1px solid transparent;
-  border-image: linear-gradient(45deg, var(--primary), var(--accent)) 1;
+  transition: transform 0.4s ease, box-shadow 0.4s ease;
 }
+
+form:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+}
+
+form label {
+  font-weight: 500;
+}
+
 form input[type="text"],
 form input[type="email"],
 form textarea {
@@ -292,40 +257,128 @@ form textarea {
   border: 1px solid #ccc;
   border-radius: 8px;
   font-size: 1rem;
+  transition: border 0.3s, box-shadow 0.3s, transform 0.2s;
 }
+
 form input[type="text"]:focus,
 form input[type="email"]:focus,
 form textarea:focus {
-  border-color: var(--primary);
+  border-color: #00b179;
   box-shadow: 0 0 10px rgba(0,177,121,0.4);
   transform: scale(1.03);
 }
+
 form input[type="submit"] {
-  background: var(--primary);
+  background: #00b179;
   color: #fff;
   padding: 14px 32px;
   border: none;
   border-radius: 30px;
   cursor: pointer;
-}
-form input[type="submit"]:hover {
-  background: var(--primary-dark);
-  transform: translateY(-4px);
+  font-weight: 500;
+  font-size: 1rem;
+  transition: all 0.3s ease;
 }
 
-/* ================================================
-   FOOTER
-================================================ */
+form input[type="submit"]:hover {
+  background: #009260;
+  transform: translateY(-4px) scale(1.05);
+  box-shadow: 0 6px 15px rgba(0,0,0,0.2);
+}
+
+/* Testimonials & Projects */
+.testimonial,
+.project-item {
+  background: rgba(255,255,255,0.85);
+  backdrop-filter: blur(6px);
+  border: 1px solid rgba(0,0,0,0.05);
+  padding: 30px;
+  margin-bottom: 35px;
+  border-radius: 16px;
+  box-shadow: 0 6px 20px rgba(0,0,0,0.1);
+  transition: transform 0.4s ease, box-shadow 0.4s ease;
+  opacity: 0;
+  animation: fadeInUp 1s ease forwards;
+}
+
+.testimonial:hover,
+.project-item:hover {
+  transform: translateY(-6px) scale(1.02);
+  box-shadow: 0 14px 40px rgba(0,0,0,0.2);
+}
+
+.testimonial h2,
+.project-item h3 {
+  margin-bottom: 15px;
+  color: #003b5b;
+}
+
+.testimonial p.contact {
+  font-style: italic;
+  color: #666;
+  font-size: 0.95rem;
+}
+
+/* Product and Project Images */
+.product-item img,
+.project-item img {
+  width: 100%;
+  max-width: 500px;
+  height: auto;
+  border-radius: 10px;
+  margin-top: 20px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+  transition: transform 0.4s ease;
+}
+
+.product-item img:hover,
+.project-item img:hover {
+  transform: scale(1.05);
+}
+
+/* Social Icons */
+.icons {
+  display: flex;
+  justify-content: center;
+  gap: 22px;
+  flex-wrap: wrap;
+  margin: 60px 0;
+}
+
+.icons img {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: #fff;
+  padding: 6px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  transition: transform 0.4s, opacity 0.4s;
+}
+
+.icons img:hover {
+  transform: scale(1.3) rotate(10deg);
+  opacity: 0.85;
+}
+
+/* Footer */
 footer {
   text-align: center;
   padding: 28px;
   background: #002c4d;
   color: #fff;
+  font-size: 0.95rem;
 }
 
-/* ================================================
-   RESPONSIVE NAVIGATION
-================================================ */
+footer a {
+  color: #00b179;
+  text-decoration: none;
+}
+
+footer a:hover {
+  text-decoration: underline;
+}
+
+/* Responsive Navigation */
 @media (max-width: 768px) {
   .hamburger {
     display: flex;
@@ -340,11 +393,22 @@ footer {
     width: 200px;
     border-radius: 8px;
     box-shadow: 0 6px 20px rgba(0,0,0,0.3);
+    padding: 10px 0;
   }
   nav ul.show {
     display: flex;
   }
   nav a {
     padding: 12px 16px;
+  }
+  header h1 {
+    font-size: 2rem;
+  }
+  header h2 {
+    font-size: 1.1rem;
+  }
+  .product-item img,
+  .project-item img {
+    max-width: 100%;
   }
 }
