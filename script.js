@@ -49,40 +49,69 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 });
 
-// Hamburger Menu Toggle
+
+// Select elements
 const hamburger = document.querySelector('.hamburger');
 const navMenu = document.querySelector('nav ul');
+const navLinks = document.querySelectorAll('nav a');
+const fadeInElements = document.querySelectorAll('section, .testimonial, .project-item');
 
+// Hamburger Toggle
 hamburger.addEventListener('click', () => {
-  hamburger.classList.toggle('active');
+  const isActive = hamburger.classList.toggle('active');
   navMenu.classList.toggle('show');
+  
+  // Accessibility: toggle aria-expanded
+  hamburger.setAttribute('aria-expanded', isActive);
 });
 
-// Close menu when a link is clicked (optional)
-document.querySelectorAll('nav a').forEach(link => {
+// Close menu when clicking any nav link (on mobile)
+navLinks.forEach(link => {
   link.addEventListener('click', () => {
     if (navMenu.classList.contains('show')) {
       navMenu.classList.remove('show');
       hamburger.classList.remove('active');
+      hamburger.setAttribute('aria-expanded', false);
     }
   });
 });
 
-// Scroll-triggered fade-in animations
+// IntersectionObserver options
 const observerOptions = {
   threshold: 0.2
 };
 
-const fadeInElements = document.querySelectorAll('section, .testimonial, .project-item');
-
-const observer = new IntersectionObserver((entries, observer) => {
+// Observer callback
+const observerCallback = (entries, observer) => {
   entries.forEach(entry => {
     if (entry.isIntersecting) {
-      entry.target.style.opacity = 1;
-      entry.target.style.transform = 'translateY(0)';
+      entry.target.classList.add('visible');
       observer.unobserve(entry.target);
     }
   });
+};
+
+// Create observer
+const observer = new IntersectionObserver(observerCallback, observerOptions);
+
+// Observe all fade-in elements
+fadeInElements.forEach(el => {
+  observer.observe(el);
+});
+
+// Optional: Close menu when clicking outside
+document.addEventListener('click', (e) => {
+  if (
+    !hamburger.contains(e.target) &&
+    !navMenu.contains(e.target) &&
+    navMenu.classList.contains('show')
+  ) {
+    navMenu.classList.remove('show');
+    hamburger.classList.remove('active');
+    hamburger.setAttribute('aria-expanded', false);
+  }
+});
+
 }, observerOptions);
 
 fadeInElements.forEach(el => {
