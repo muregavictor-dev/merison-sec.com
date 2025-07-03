@@ -117,3 +117,32 @@ document.addEventListener('click', (e) => {
 fadeInElements.forEach(el => {
   observer.observe(el);
 });
+
+// Select the logo container
+const logo = document.querySelector('.logo');
+
+logo.addEventListener('mousemove', (e) => {
+  const rect = logo.getBoundingClientRect();
+  const x = e.clientX - rect.left; // X within element
+  const y = e.clientY - rect.top;  // Y within element
+
+  const centerX = rect.width / 2;
+  const centerY = rect.height / 2;
+
+  // Calculate rotation, adjust sensitivity as needed
+  const rotateX = -(y - centerY) / 10;
+  const rotateY = (x - centerX) / 10;
+
+  logo.style.transform = `rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale(1.07)`;
+});
+
+logo.addEventListener('mouseleave', () => {
+  // Smoothly reset to default
+  logo.style.transform = `rotateX(0deg) rotateY(0deg) scale(1)`;
+});
+
+logo.addEventListener('mouseenter', () => {
+  // Subtle grow when entering
+  logo.style.transition = 'transform 0.2s ease';
+});
+
