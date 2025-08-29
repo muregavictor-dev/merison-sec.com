@@ -196,6 +196,28 @@ nav a.active {
   }
 }
 
+.nav-links {
+  display: flex;
+  gap: 20px;
+}
+
+/* Mobile hidden state */
+@media (max-width: 768px) {
+  .nav-links {
+    display: none;
+    flex-direction: column;
+    background: #333;
+    position: absolute;
+    top: 70px;
+    right: 25px;
+    padding: 15px;
+    border-radius: 8px;
+  }
+
+  .nav-links.active {
+    display: flex;
+  }
+}
 
 /* Main Content */
 main {
@@ -442,6 +464,7 @@ footer a:hover {
     transition: none !important;
   }
 }
+
 
 
 
