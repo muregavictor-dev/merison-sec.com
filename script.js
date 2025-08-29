@@ -50,41 +50,23 @@ document.addEventListener('DOMContentLoaded', function () {
     });
   }
 
-  // ========== Hamburger Menu ==========
-const menuToggle = document.querySelector('.menu-toggle');
-const navLinks = document.querySelector('.nav-links');
+  // Select hamburger and nav
+const hamburger = document.querySelector('.hamburger');
+const navLinks = document.querySelector('.nav-links'); // adjust class to your nav
 
-menuToggle.addEventListener('click', () => {
-  navLinks.classList.toggle('active');
-  menuToggle.classList.toggle('open'); // optional if you add animations
+// Toggle menu on click
+hamburger.addEventListener('click', () => {
+  hamburger.classList.toggle('active');  // animate hamburger
+  navLinks.classList.toggle('active');   // show/hide menu
 });
 
-// Close menu when clicking a link (mobile UX improvement)
+// Optional: close menu when a link is clicked
 document.querySelectorAll('.nav-links a').forEach(link => {
   link.addEventListener('click', () => {
+    hamburger.classList.remove('active');
     navLinks.classList.remove('active');
-    menuToggle.classList.remove('open');
   });
 });
-
-// ========== Hamburger Menu ==========
-const hamburger = document.querySelector('.hamburger');
-const navMenu = document.querySelector('.nav-links');
-
-if (hamburger && navMenu) {
-  hamburger.addEventListener('click', () => {
-    hamburger.classList.toggle('active');
-    navMenu.classList.toggle('active');
-  });
-
-  // Close menu when clicking a link (mobile UX improvement)
-  document.querySelectorAll('.nav-links a').forEach(link => {
-    link.addEventListener('click', () => {
-      hamburger.classList.remove('active');
-      navMenu.classList.remove('active');
-    });
-  });
-}
 
 
 // ========== Scroll-triggered Fade Animations ==========
@@ -141,4 +123,5 @@ if (logo) {
     logo.style.transition = "transform 0.2s ease";
   });
 }
+
 
