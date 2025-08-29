@@ -160,8 +160,14 @@ nav a.active {
   box-shadow: 0 10px 30px rgba(0,0,0,0.3);
   animation: pulse 0.4s;
 }
+
+.nav-links {
+  display: flex;
+  gap: 20px;
+}
+/* Hamburger base */
 .hamburger {
-  display: none;
+  display: none; /* hidden on desktop */
   flex-direction: column;
   cursor: pointer;
   gap: 5px;
@@ -174,31 +180,60 @@ nav a.active {
 .hamburger div {
   width: 25px;
   height: 3px;
-  background: #fff;
+  background: #fff; /* adjust to match your theme */
   border-radius: 2px;
   transition: all 0.3s ease;
 }
 
+/* Animation when active */
 .hamburger.active div:nth-child(1) {
   transform: rotate(45deg) translate(5px, 5px);
 }
 .hamburger.active div:nth-child(2) {
-  opacity: 0; /* Hide middle bar */
+  opacity: 0; /* hide middle bar */
 }
 .hamburger.active div:nth-child(3) {
   transform: rotate(-45deg) translate(5px, -5px);
 }
 
-/* Show hamburger only on smaller screens */
+/* Mobile Nav */
+.nav-links {
+  display: flex;
+  gap: 20px;
+}
+
 @media (max-width: 768px) {
+  .nav-links {
+    display: none;
+    flex-direction: column;
+    background: #333; /* menu background */
+    position: absolute;
+    top: 70px;
+    right: 25px;
+    padding: 15px;
+    border-radius: 8px;
+  }
+
+  .nav-links.active {
+    display: flex;
+    animation: fadeSlideIn 0.4s ease forwards;
+  }
+
   .hamburger {
     display: flex;
   }
 }
 
-.nav-links {
-  display: flex;
-  gap: 20px;
+/* Slide/Fade animation for menu */
+@keyframes fadeSlideIn {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 /* Mobile hidden state */
@@ -464,6 +499,7 @@ footer a:hover {
     transition: none !important;
   }
 }
+
 
 
 
