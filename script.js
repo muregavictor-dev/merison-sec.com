@@ -50,53 +50,46 @@ document.addEventListener('DOMContentLoaded', function () {
     });
   }
 
-  // ====================
-  // 2. SCROLL ANIMATIONS
-  // ====================
-  const fadeElements = document.querySelectorAll("section, .testimonial, .project-item");
-  const observer = new IntersectionObserver((entries, observer) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add("visible");
-        observer.unobserve(entry.target);
-      }
-    });
-  }, {
-    threshold: 0.2
+  // ========== Hamburger Menu ==========
+const menuToggle = document.querySelector('.menu-toggle');
+const navLinks = document.querySelector('.nav-links');
+
+menuToggle.addEventListener('click', () => {
+  navLinks.classList.toggle('active');
+  menuToggle.classList.toggle('open'); // optional if you add animations
+});
+
+// Close menu when clicking a link (mobile UX improvement)
+document.querySelectorAll('.nav-links a').forEach(link => {
+  link.addEventListener('click', () => {
+    navLinks.classList.remove('active');
+    menuToggle.classList.remove('open');
   });
+});
 
-  fadeElements.forEach(el => observer.observe(el));
 
-  // ====================
-  // 3. HAMBURGER MENU
-  // ====================
-  const hamburger = document.querySelector(".hamburger");
-  const navMenu = document.querySelector("nav ul");
-  const navLinks = document.querySelectorAll("nav a");
+// ========== Scroll-triggered Fade Animations ==========
+const faders = document.querySelectorAll('.fade-in');
 
-  if (hamburger && navMenu) {
-    hamburger.addEventListener("click", () => {
-      const isActive = hamburger.classList.toggle("active");
-      navMenu.classList.toggle("show");
-      hamburger.setAttribute("aria-expanded", isActive);
-    });
+const appearOptions = {
+  threshold: 0.2, // 20% of element visible
+  rootMargin: "0px 0px -50px 0px" // appear slightly before fully visible
+};
 
-    navLinks.forEach(link => {
-      link.addEventListener("click", () => {
-        navMenu.classList.remove("show");
-        hamburger.classList.remove("active");
-        hamburger.setAttribute("aria-expanded", false);
-      });
-    });
+const appearOnScroll = new IntersectionObserver(function(entries, appearOnScroll) {
+  entries.forEach(entry => {
+    if (!entry.isIntersecting) {
+      return;
+    } else {
+      entry.target.classList.add('show');
+      appearOnScroll.unobserve(entry.target);
+    }
+  });
+}, appearOptions);
 
-    document.addEventListener("click", (e) => {
-      if (!hamburger.contains(e.target) && !navMenu.contains(e.target)) {
-        navMenu.classList.remove("show");
-        hamburger.classList.remove("active");
-        hamburger.setAttribute("aria-expanded", false);
-      }
-    });
-  }
+faders.forEach(fader => {
+  appearOnScroll.observe(fader);
+});
 
   // ====================
   // 4. 3D LOGO HOVER
@@ -123,21 +116,6 @@ document.addEventListener('DOMContentLoaded', function () {
     });
   }
 });
-// Scroll-triggered fade animations
-const fadeElements = document.querySelectorAll('.fade');
 
-const observer = new IntersectionObserver(
-  entries => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add('visible');
-      }
-    });
-  },
-  {
-    threshold: 0.2, // element visible at 20%
-  }
-);
 
-fadeElements.forEach(el => observer.observe(el));
 
