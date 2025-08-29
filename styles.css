@@ -201,7 +201,7 @@ main {
 
 section {
   margin-bottom: 70px;
-  opacity: 0;
+  opacity: 1;
   transform: translateY(30px);
   transition: all 0.8s ease;
   will-change: transform;
@@ -436,3 +436,4 @@ footer a:hover {
     transition: none !important;
   }
 }
+
