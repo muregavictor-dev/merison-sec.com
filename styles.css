@@ -303,7 +303,7 @@ form input[type="submit"]:hover {
   margin-bottom: 35px;
   border-radius: 16px;
   box-shadow: 0 8px 24px rgba(0,0,0,0.08);
-  opacity: 0;
+  opacity: 1;
   transform: translateY(30px);
   transition: all 0.8s ease;
   will-change: transform;
@@ -436,4 +436,5 @@ footer a:hover {
     transition: none !important;
   }
 }
+
 
