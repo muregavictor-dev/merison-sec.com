@@ -67,6 +67,52 @@ document.querySelectorAll('.nav-links a').forEach(link => {
   });
 });
 
+// ======= HAMBURGER MENU TOGGLE =======
+const hamburger = document.querySelector('.hamburger');
+const navMenu = document.querySelector('.nav-links');
+
+hamburger.addEventListener('click', () => {
+    hamburger.classList.toggle('active');
+    navMenu.classList.toggle('active');
+});
+
+// Close menu when clicking a link (mobile)
+document.querySelectorAll('.nav-links a').forEach(link => {
+    link.addEventListener('click', () => {
+        hamburger.classList.remove('active');
+        navMenu.classList.remove('active');
+    });
+});
+
+
+// ======= FADE-IN ON SCROLL =======
+const fadeElems = document.querySelectorAll('.fade-in');
+
+// IntersectionObserver for better performance
+const observer = new IntersectionObserver((entries, obs) => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            entry.target.classList.add('show'); // adds opacity + slide effect
+            obs.unobserve(entry.target); // only animate once
+        }
+    });
+}, {
+    threshold: 0.2 // trigger when 20% of element is visible
+});
+
+fadeElems.forEach(el => observer.observe(el));
+
+
+// ======= SMOOTH SCROLL (Optional) =======
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+            target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+    });
+});
 
 // ========== Scroll-triggered Fade Animations ==========
 const faders = document.querySelectorAll('.fade-in');
@@ -116,6 +162,7 @@ faders.forEach(fader => {
     });
   }
 });
+
 
 
 
