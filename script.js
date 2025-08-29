@@ -67,102 +67,78 @@ document.querySelectorAll('.nav-links a').forEach(link => {
   });
 });
 
-// ======= HAMBURGER MENU TOGGLE =======
+// ========== Hamburger Menu ==========
 const hamburger = document.querySelector('.hamburger');
 const navMenu = document.querySelector('.nav-links');
 
-hamburger.addEventListener('click', () => {
+if (hamburger && navMenu) {
+  hamburger.addEventListener('click', () => {
     hamburger.classList.toggle('active');
     navMenu.classList.toggle('active');
-});
+  });
 
-// Close menu when clicking a link (mobile)
-document.querySelectorAll('.nav-links a').forEach(link => {
+  // Close menu when clicking a link (mobile UX improvement)
+  document.querySelectorAll('.nav-links a').forEach(link => {
     link.addEventListener('click', () => {
-        hamburger.classList.remove('active');
-        navMenu.classList.remove('active');
+      hamburger.classList.remove('active');
+      navMenu.classList.remove('active');
     });
-});
+  });
+}
 
-
-// ======= FADE-IN ON SCROLL =======
-const fadeElems = document.querySelectorAll('.fade-in');
-
-// IntersectionObserver for better performance
-const observer = new IntersectionObserver((entries, obs) => {
-    entries.forEach(entry => {
-        if (entry.isIntersecting) {
-            entry.target.classList.add('show'); // adds opacity + slide effect
-            obs.unobserve(entry.target); // only animate once
-        }
-    });
-}, {
-    threshold: 0.2 // trigger when 20% of element is visible
-});
-
-fadeElems.forEach(el => observer.observe(el));
-
-
-// ======= SMOOTH SCROLL (Optional) =======
-document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-    anchor.addEventListener('click', function (e) {
-        e.preventDefault();
-        const target = document.querySelector(this.getAttribute('href'));
-        if (target) {
-            target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-        }
-    });
-});
 
 // ========== Scroll-triggered Fade Animations ==========
 const faders = document.querySelectorAll('.fade-in');
 
 const appearOptions = {
-  threshold: 0.2, // 20% of element visible
-  rootMargin: "0px 0px -50px 0px" // appear slightly before fully visible
+  threshold: 0.2, // trigger when 20% visible
+  rootMargin: "0px 0px -50px 0px"
 };
 
-const appearOnScroll = new IntersectionObserver(function(entries, appearOnScroll) {
+const appearOnScroll = new IntersectionObserver((entries, observer) => {
   entries.forEach(entry => {
-    if (!entry.isIntersecting) {
-      return;
-    } else {
-      entry.target.classList.add('show');
-      appearOnScroll.unobserve(entry.target);
+    if (entry.isIntersecting) {
+      entry.target.classList.add('show'); // adds opacity & slide
+      observer.unobserve(entry.target);   // only animate once
     }
   });
 }, appearOptions);
 
-faders.forEach(fader => {
-  appearOnScroll.observe(fader);
-});
+faders.forEach(fader => appearOnScroll.observe(fader));
 
-  // ====================
-  // 4. 3D LOGO HOVER
-  // ====================
-  const logo = document.querySelector(".logo");
-  if (logo) {
-    logo.addEventListener("mousemove", (e) => {
-      const rect = logo.getBoundingClientRect();
-      const x = e.clientX - rect.left;
-      const y = e.clientY - rect.top;
-      const centerX = rect.width / 2;
-      const centerY = rect.height / 2;
-      const rotateX = -(y - centerY) / 10;
-      const rotateY = (x - centerX) / 10;
-      logo.style.transform = `rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale(1.07)`;
-    });
 
-    logo.addEventListener("mouseleave", () => {
-      logo.style.transform = "rotateX(0deg) rotateY(0deg) scale(1)";
-    });
-
-    logo.addEventListener("mouseenter", () => {
-      logo.style.transition = "transform 0.2s ease";
-    });
-  }
+// ========== Smooth Scroll ==========
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+  anchor.addEventListener('click', function (e) {
+    e.preventDefault();
+    const target = document.querySelector(this.getAttribute('href'));
+    if (target) {
+      target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+  });
 });
 
 
+// ========== 3D Logo Hover ==========
+const logo = document.querySelector(".logo");
+if (logo) {
+  logo.addEventListener("mousemove", (e) => {
+    const rect = logo.getBoundingClientRect();
+    const x = e.clientX - rect.left;
+    const y = e.clientY - rect.top;
+    const centerX = rect.width / 2;
+    const centerY = rect.height / 2;
+    const rotateX = -(y - centerY) / 10;
+    const rotateY = (x - centerX) / 10;
+    logo.style.transform = `rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale(1.07)`;
+  });
 
+  logo.addEventListener("mouseleave", () => {
+    logo.style.transform = "rotateX(0deg) rotateY(0deg) scale(1)";
+  });
+
+  logo.addEventListener("mouseenter", () => {
+    logo.style.transition = "transform 0.2s ease";
+  });
+}
 
