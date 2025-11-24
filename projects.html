@@ -40,12 +40,10 @@
       </div>
     </nav>
   </header>
-  <style>/* Import a nice font */
-@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap');
+  <style>@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap');
 
 :root {
-    --primary-color: #0d6efd; /* Bootstrap Blue */
-    --secondary-color: #6c757d;
+    --primary-color: #0d6efd;
     --hover-transform: translateY(-5px);
 }
 
@@ -54,74 +52,63 @@ body {
     overflow-x: hidden;
 }
 
-/* Custom Navbar Styling */
-.navbar {
-    padding: 0.8rem 0;
-}
-.navbar-brand {
-    font-size: 1.5rem;
-    letter-spacing: 0.5px;
-}
+/* --- Navbar & Layout --- */
+.navbar { padding: 0.8rem 0; }
+.navbar-brand { font-size: 1.5rem; letter-spacing: 0.5px; }
+.h-divider { width: 80px; height: 4px; border-radius: 2px; margin-top: 1rem; }
 
-/* Divider for headings */
-.h-divider {
-    width: 80px;
-    height: 4px;
-    border-radius: 2px;
-    margin-top: 1rem;
-}
-
-/* Card Styling */
+/* --- Card Styling --- */
 .card {
     transition: transform 0.3s ease, box-shadow 0.3s ease;
     background: #fff;
+    overflow: hidden; /* Keeps images inside rounded corners */
 }
 
-/* Hover Effect (Lift Up) */
 .shadow-hover:hover {
     transform: var(--hover-transform);
     box-shadow: 0 10px 20px rgba(0,0,0,0.15) !important;
 }
 
-/* Image Handling - Crucial for uniform cards */
-.project-img {
-    height: 250px; /* Forces all images to be the same height */
-    object-fit: cover; /* Zooms image to fill space without stretching */
+/* --- THE STATIC GALLERY GRID (No Sliders) --- */
+.gallery-grid {
+    display: grid;
+    /* This creates a 2-column layout automatically */
+    grid-template-columns: repeat(2, 1fr); 
+    gap: 2px; /* Tiny space between images */
+    background: #fff;
 }
 
-.object-fit-cover {
-    object-fit: cover;
+/* Logic for different numbers of images */
+/* If there is only 1 image, make it span the full width */
+.gallery-grid.single-img {
+    grid-template-columns: 1fr;
 }
 
-/* Carousel Customization */
-.carousel-inner {
-    border-bottom: 1px solid #eee;
+/* Styling the images themselves */
+.gallery-grid img {
+    width: 100%;
+    height: 180px; /* Fixed height ensures the card "fills the place" neatly */
+    object-fit: cover; /* Ensures image fills the box without white bars */
+    transition: transform 0.3s ease;
+    cursor: pointer;
 }
 
-/* Social Icons in Footer */
+/* Hover effect to see details better */
+.gallery-grid img:hover {
+    transform: scale(1.05);
+    z-index: 2;
+}
+
+/* --- Footer Icons --- */
 .social-link img {
-    width: 32px;
-    height: 32px;
+    width: 32px; height: 32px;
     transition: transform 0.2s ease;
-    filter: grayscale(100%) brightness(200%); /* Make icons white/grey initially */
+    filter: grayscale(100%) brightness(200%);
 }
-
 .social-link:hover img {
-    transform: scale(1.2);
-    filter: grayscale(0%); /* Reveal original color on hover */
+    transform: scale(1.2); filter: grayscale(0%);
 }
-
-/* List Group Customization */
-.list-group-item {
-    border: none;
-    padding-left: 0;
-}
-
-/* Responsive Tweaks */
-@media (max-width: 768px) {
-    .project-img {
-        height: 200px;
-    }
+.list-group-item { border: none; padding-left: 0; }
 }</style>
 
   <main class="pt-5 mt-5">
@@ -331,3 +318,4 @@ body {
   <script src="script.js" defer></script>
 </body>
 </html>
+
