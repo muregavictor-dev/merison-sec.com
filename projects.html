@@ -45,6 +45,7 @@
       gap: 1rem;
       padding: 0;
       margin-top: 1rem;
+      justify-content: center;
     }
 
     nav ul li a {
@@ -54,18 +55,14 @@
       transition: 0.3s;
     }
 
-    nav ul li a:hover, nav ul li a[aria-current="page"] {
+    nav ul li a:hover, 
+    nav ul li a[aria-current="page"] {
       color: #ffed4a;
     }
 
     .projects-intro {
       text-align: center;
       padding: 3rem 1rem;
-    }
-
-    .projects-intro h2 {
-      font-size: 2rem;
-      margin-bottom: 1rem;
     }
 
     .project-card {
@@ -81,12 +78,11 @@
       box-shadow: 0 10px 25px rgba(0,0,0,0.15);
     }
 
-   .project-card img {
-  width: 100%;
-  height: auto;
-  object-fit: contain;
-}
-
+    .project-card img {
+      width: 100%;
+      height: auto;
+      object-fit: contain;
+      transition: transform 0.3s;
     }
 
     .project-card:hover img {
@@ -102,19 +98,12 @@
       margin-bottom: 0.75rem;
     }
 
-    .project-card p {
-      font-size: 1rem;
-      margin-bottom: 0.5rem;
-      line-height: 1.6;
-    }
-
-    .project-card ul {
-      padding-left: 1rem;
-      margin-top: 0.5rem;
-    }
-
-    .project-card ul li {
-      margin-bottom: 0.25rem;
+    footer {
+      background: linear-gradient(135deg, #1e293b, #1e40af);
+      color: #fff;
+      text-align: center;
+      padding: 2rem 1rem;
+      margin-top: 2rem;
     }
 
     .social-icons {
@@ -133,24 +122,17 @@
     .social-icons img:hover {
       transform: scale(1.2);
     }
-
-    footer {
-      background: linear-gradient(135deg, #1e293b, #1e40af);
-      color: #fff;
-      text-align: center;
-      padding: 2rem 1rem;
-      margin-top: 2rem;
-    }
   </style>
 </head>
+
 <body>
 
-  <!-- Header & Navigation -->
+  <!-- Header -->
   <header class="text-center">
     <h1>Merison Systems</h1>
     <h2>Our Projects</h2>
     <nav role="navigation" aria-label="Main Navigation">
-      <ul class="justify-content-center">
+      <ul>
         <li><a href="index.html" aria-current="page">Home</a></li>
         <li><a href="about.html">About</a></li>
         <li><a href="services.html">Services</a></li>
@@ -173,57 +155,62 @@
   <section class="container project-list">
     <div class="row g-4">
 
+      <!-- Project 1 -->
       <div class="col-md-6 col-lg-4">
         <div class="project-card">
-          <img src="IMG-20250326-WA0019.jpg"width="350px" alt="CCTV Installation at Mbwinjeru Arithi Dairy">
+          <img src="IMG-20250326-WA0019.jpg" class="img-fluid" alt="CCTV Installation at Mbwinjeru Arithi Dairy">
           <div class="project-card-body">
             <h3>Commercial CCTV Installation – Mbwinjeru Arithi Dairy</h3>
             <p>Installed a high-definition surveillance system to ensure 24/7 monitoring.</p>
-            <img src="IMG-20250326-WA0015.jpg" width="350px" alt="Surveillance camera installation close-up">
-            <img src="IMG-20250326-WA0020.jpg" width="350px" alt="Outdoor camera placement">
-            <img src="IMG-20250326-WA0018.jpg" width="350px" alt="Security system at dairy facility">
+            <img src="IMG-20250326-WA0015.jpg" class="img-fluid" alt="Surveillance camera installation close-up">
+            <img src="IMG-20250326-WA0020.jpg" class="img-fluid" alt="Outdoor camera placement">
+            <img src="IMG-20250326-WA0018.jpg" class="img-fluid" alt="Security system at dairy facility">
           </div>
         </div>
       </div>
 
+      <!-- Project 2 -->
       <div class="col-md-6 col-lg-4">
         <div class="project-card">
-          <img src="IMG-20250326-WA0014.jpg" length="350px"width="350px alt="Solar panel rooftop installation">
+          <img src="IMG-20250326-WA0014.jpg" class="img-fluid" alt="Solar panel rooftop installation">
           <div class="project-card-body">
             <h3>Solar Energy System for Factory</h3>
             <p>Installed a 50kW solar energy system to cut energy costs and support sustainability.</p>
-            <img src="IMG-20250326-WA0016.jpg" width="350px" alt="Workers during solar installation">
+            <img src="IMG-20250326-WA0016.jpg" class="img-fluid" alt="Workers during solar installation">
           </div>
         </div>
       </div>
 
+      <!-- Project 3 -->
       <div class="col-md-6 col-lg-4">
         <div class="project-card">
-          <img src="IMG-20250327-WA0002.jpg" width="350px" alt="Automated gate with remote control">
+          <img src="IMG-20250327-WA0002.jpg" class="img-fluid" alt="Automated gate with remote control">
           <div class="project-card-body">
             <h3>Automated Gate System</h3>
             <p>Smart remote-controlled gate installation for a residential estate.</p>
-            <img src="IMG-20250327-WA0007.jpg" width="350px" alt="Motorized gate opener system">
-            <img src="images/gate-automation-project.jpg" width="350px" alt="Finished automated gate project">
+            <img src="IMG-20250327-WA0007.jpg" class="img-fluid" alt="Motorized gate opener system">
+            <img src="images/gate-automation-project.jpg" class="img-fluid" alt="Finished automated gate project">
           </div>
         </div>
       </div>
 
+      <!-- Project 4 -->
       <div class="col-md-6 col-lg-6">
         <div class="project-card">
-          <img src="IMG-20250326-WA0012.jpg" width="450px" alt="Motion sensor system setup">
+          <img src="IMG-20250326-WA0012.jpg" class="img-fluid" alt="Motion sensor system setup">
           <div class="project-card-body">
             <h3>Security Alarm System – Kithirune Dairy</h3>
             <p>Integrated motion detectors and alarms in a large warehouse for enhanced security.</p>
-            <img src="IMG-20250326-WA0017.jpg" length ="450px" alt="Warehouse alarm system wiring">
-            <img src="IMG-20250326-WA0023.jpg" length=450px" alt="Alarm control panel installation">
+            <img src="IMG-20250326-WA0017.jpg" class="img-fluid" alt="Warehouse alarm system wiring">
+            <img src="IMG-20250326-WA0023.jpg" class="img-fluid" alt="Alarm control panel installation">
           </div>
         </div>
       </div>
 
+      <!-- Project 5 -->
       <div class="col-md-6 col-lg-6">
         <div class="project-card">
-          <img src="images/cctv-placeholder.jpg length="450px" length="450px" alt="CCTV Installations at coffee factories">
+          <img src="images/cctv-placeholder.jpg" class="img-fluid" alt="CCTV Installations at coffee factories">
           <div class="project-card-body">
             <h3>CCTV Installations – Coffee Factories & Church</h3>
             <p>We successfully installed CCTV systems at several key locations:</p>
@@ -256,18 +243,12 @@
 
   <!-- Footer -->
   <footer>
-    <p>&copy; 2025 MERISON Systems. All rights reserved. | <a href="privacy.html">Privacy Policy</a></p>
-    <p>Designed by <a href="https://muregavictor-dev.github.io/portfolio-/">muregavictor-dev</a></p>
+    <p>&copy; 2025 MERISON Systems. All rights reserved. | <a href="privacy.html" class="text-white">Privacy Policy</a></p>
+    <p>Designed by <a href="https://muregavictor-dev.github.io/portfolio-/" class="text-white">muregavictor-dev</a></p>
   </footer>
 
   <!-- Bootstrap JS -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/js/bootstrap.bundle.min.js"></script>
+
 </body>
 </html>
-
-
-
-
-
-
-
